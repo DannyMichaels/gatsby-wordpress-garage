@@ -1,11 +1,6 @@
 import React from "react";
-import {
-  BlockRendererProvider,
-  BlockRenderer,
-  getStyles,
-  getClasses,
-} from "@webdeveducation/wp-block-tools";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { BlockRendererProvider } from "@webdeveducation/wp-block-tools";
+import { blockRendererComponents } from "../config/blockRendererComponents";
 
 function Page(props) {
   // pageContext is passed from gatsby-node.js in the createPage function (context property)
@@ -15,45 +10,7 @@ function Page(props) {
     <div>
       <BlockRendererProvider
         allBlocks={props.pageContext.blocks}
-        renderComponent={(block) => {
-          // any block that isn't included will default to the core renderer
-          switch (block.name) {
-            case "core/media-text": {
-              console.log("RENDER COMPONENT", block);
-
-              const contentJSX = (
-                <div
-                  className={`flex p-4 ${
-                    block.attributes.verticalAlignment === "center"
-                      ? "items-center"
-                      : ""
-                  }`}
-                >
-                  <div>
-                    <BlockRenderer blocks={block.innerBlocks} />
-                  </div>
-                </div>
-              );
-
-              // getStyles() returns an object with the styles for the block defined in the wp cms
-              return (
-                <div
-                  key={block.id}
-                  style={getStyles(block)}
-                  className={getClasses(block)}
-                >
-                  {block.attributes.mediaPosition === "right" && contentJSX}
-
-                  <div>
-                    <GatsbyImage alt="" image={block.attributes.gatsbyImage} />
-                  </div>
-
-                  {block.attributes.mediaPosition !== "right" && contentJSX}
-                </div>
-              );
-            }
-          }
-        }}
+        renderComponent={blockRendererComponents}
       />
     </div>
   );
