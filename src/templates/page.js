@@ -1,6 +1,7 @@
 import React from "react";
 import { BlockRendererProvider } from "@webdeveducation/wp-block-tools";
 import { blockRendererComponents } from "../config/blockRendererComponents";
+import { Link } from "gatsby";
 
 function Page(props) {
   // pageContext is passed from gatsby-node.js in the createPage function (context property)
@@ -11,6 +12,17 @@ function Page(props) {
       <BlockRendererProvider
         allBlocks={props.pageContext.blocks}
         renderComponent={blockRendererComponents}
+        siteDomain={process.env.GATSBY_WP_URL}
+        customInternalLinkComponent={(
+          { children, internalHref, className },
+          index
+        ) => {
+          return (
+            <Link key={index} to={internalHref} className={className}>
+              {children}
+            </Link>
+          );
+        }}
       />
     </div>
   );
