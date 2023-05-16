@@ -1,5 +1,8 @@
 const path = require("path");
-const { assignIds } = require("@webdeveducation/wp-block-tools");
+const {
+  assignIds,
+  assignGatsbyImage,
+} = require("@webdeveducation/wp-block-tools");
 const fs = require("fs");
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -33,6 +36,11 @@ exports.createPages = async ({ graphql, actions }) => {
     const page = pages[i];
     let blocks = page.blocks;
     blocks = assignIds(blocks);
+    blocks = await assignGatsbyImage({
+      blocks,
+      graphql,
+      coreMediaText: true, // assign it on all media & text blocks
+    });
 
     createPage({
       path: page.uri,
