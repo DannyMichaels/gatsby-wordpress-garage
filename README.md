@@ -1,4 +1,3 @@
-<h1 align="center">
-  Gatsby WordPress Gutenberg Starter
-</h1>
-# gatsby-wordpress-garage
+# info
+
+local Headless CMS development connected through wp local https://localwp.com/
