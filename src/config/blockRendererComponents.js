@@ -4,7 +4,7 @@ import {
   getStyles,
   getClasses,
 } from "@webdeveducation/wp-block-tools";
-import MediaText from "../components/MediaText";
+import { MediaText } from "../components";
 
 export const blockRendererComponents = (block) => {
   // any block that isn't included will default to the core renderer

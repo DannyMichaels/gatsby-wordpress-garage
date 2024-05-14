@@ -1,14 +1,14 @@
 import React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
 
-function MediaText({
+export const MediaText = ({
   verticalAlignment,
   style,
   className,
   mediaPosition,
   gatsbyImage,
   children,
-}) {
+}) => {
   const contentJSX = (
     <div
       className={`flex p-4 ${
@@ -31,6 +31,4 @@ function MediaText({
       {mediaPosition !== "right" && contentJSX}
     </div>
   );
-}
-
-export default MediaText;
+};
