@@ -1,2 +1,3 @@
-export * from "./MediaText/MediaText";
+export * from "./MediaText";
 export * from "./Layout";
+export * from "./CallToActionButton";
