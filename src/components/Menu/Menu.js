@@ -57,7 +57,7 @@ export const Menu = () => {
         {menuItems.map((menuItem, idx) => (
           <div
             key={idx}
-            className="flex h-full cursor-pointer hover:bg-emerald-800"
+            className="group relative flex h-full cursor-pointer hover:bg-emerald-800"
           >
             <Link
               to={menuItem.root.destination.uri}
@@ -72,6 +72,27 @@ export const Menu = () => {
             >
               {menuItem.root.label}
             </Link>
+
+            {menuItem.subMenuItems && (
+              <div className="absolute right-0 top-full hidden bg-emerald-800 text-right group-hover:block">
+                {menuItem.subMenuItems.map((subMenuItem, idx) => (
+                  <Link
+                    key={idx}
+                    to={subMenuItem.destination.uri}
+                    className="
+                   block 
+                   whitespace-nowrap
+                   p-4
+                   text-white
+                   no-underline
+                   hover:bg-emerald-700
+                  "
+                  >
+                    {subMenuItem.label}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>
