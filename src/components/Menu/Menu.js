@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, graphql, useStaticQuery } from "gatsby";
+import { StaticImage } from "gatsby-plugin-image";
 
 const mainMenuQuery = graphql`
   query MainMenuQuery {
@@ -44,7 +45,7 @@ export const Menu = () => {
   const { menuItems = [] } = data.wp.acfOptionsMainMenu.mainMenu;
 
   return (
-    <div
+    <nav
       className="sticky 
     top-0 z-20
     flex
@@ -52,7 +53,14 @@ export const Menu = () => {
     items-center
     justify-between bg-emerald-900 px-4 font-bold text-white"
     >
-      <div>logo</div>
+      <Link to="/">
+        <StaticImage
+          src="../../../static/icon.png"
+          layout="fixed"
+          height={30}
+          alt="logo"
+        />
+      </Link>
       <div className="flex h-full space-x-4">
         {menuItems.map((menuItem, idx) => (
           <div
@@ -96,6 +104,6 @@ export const Menu = () => {
           </div>
         ))}
       </div>
-    </div>
+    </nav>
   );
 };
